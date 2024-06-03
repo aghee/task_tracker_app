@@ -11,23 +11,31 @@ from django.contrib.auth import logout
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
-from django.contrib.auth import get_user_model
+from django.contrib.auth import login, authenticate
+# from django.contrib.auth import get_user_model
 
 # Create your views here.
-class CustomLoginView(LoginView):
-    template_name="todo/login.html"
-    fields="__all__"
-    redirect_authenticated_user=True
+# class CustomLoginView(LoginView):
+#     template_name="todo/login.html"
+#     fields="__all__"
+#     redirect_authenticated_user=True
     
-    def get_success_url(self):
-        return reverse_lazy("all_tasks")
+#     def get_success_url(self):
+#         return reverse_lazy("all_tasks")
     
 # class CustomLogoutView(LogoutView):
 #     def get_success_url(self):
 #         return reverse_lazy("login")
 
-
+def loginUser(request):
+    username = request.POST["username"]
+    password = request.POST["password"]
+    user = authenticate(request, username=username, password=password,backend="django.contrib.auth.backends.ModelBackend")
+    if user is not None:
+        login(request, user)
+        return redirect("all_tasks")
+    else:
+        print("Incorrect credentials!Try again.")
 
 def logoutUser(request):
     logout(request)
@@ -44,13 +52,13 @@ class Registration(FormView):
     #user is created,logged in and redirected
     #use same concept for Google SignIn
     def form_valid(self,form):
-        # user=form.save()
-        User=get_user_model()
-        user=User.objects.create_user(
-            username=form.cleaned_data["username"],
-            password=form.cleaned_data["password"],
-            backend="django.contrib.auth.backends.ModelBackend",
-        )
+        user=form.save()
+        # User=get_user_model()
+        # user=User.objects.create_user(
+        #     username=form.cleaned_data["username"],
+        #     password=form.cleaned_data["password"],
+        #     backend="django.contrib.auth.backends.ModelBackend",
+        # )
         if user is not None:
             login(self.request,user)
         return super(Registration,self).form_valid(form)
