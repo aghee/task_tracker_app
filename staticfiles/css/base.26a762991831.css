@@ -1,0 +1,87 @@
+body {
+    background-color: ghostwhite;
+    font-family: "Chakra Petch", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    padding-top: 75px;
+}
+
+.container {
+    max-width: 750px;
+    margin: auto;
+    background-color: #fff;
+    -webkit-box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+    box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Raleway', sans-serif
+}
+
+a {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    background-color: powderblue;
+}
+
+a:hover {
+    background-color: #eee;
+}
+
+
+
+p {
+    color: blue
+}
+
+.header-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+    background-color: beige;
+}
+
+.card-body {
+    padding: 30px;
+}
+
+@media screen and (max-width:320px) {
+    #search-add-wrapper {
+        padding: 10px;
+    }
+}
+
+.task-status{
+    color: black;
+}
+
+.task-status.completed {
+    color: green;
+}
+.task-status.in-progress {
+    color: purple;
+}
+.task-status.discontinued {
+    color:red;
+}
+td, th {
+    padding: 15px;
+  }
+  
+  table {
+    border-spacing: 5px;
+  }
+  
