@@ -43,7 +43,7 @@ class Registration(FormView):
     #user is created,logged in and redirected
     #use same concept for Google SignIn
     def form_valid(self,form):
-        user=form.save()
+        user=form.save(backend="django.contrib.auth.backends.ModelBackend")
         if user is not None:
             login(self.request,user)
         return super(Registration,self).form_valid(form)
