@@ -35,7 +35,7 @@ ALLOWED_HOSTS = ['*']
 
 
 # Application definition
-SITE_ID = 6
+SITE_ID = 2
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'todo',
-    "django.contrib.sites",
+    # "django.contrib.sites",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
