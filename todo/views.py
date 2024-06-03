@@ -12,6 +12,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.contrib.auth import get_user_model
 
 # Create your views here.
 class CustomLoginView(LoginView):
@@ -43,7 +44,13 @@ class Registration(FormView):
     #user is created,logged in and redirected
     #use same concept for Google SignIn
     def form_valid(self,form):
-        user=form.save(backend="django.contrib.auth.backends.ModelBackend")
+        # user=form.save()
+        User=get_user_model()
+        user=User.objects.create_user(
+            username=form.cleaned_data["username"],
+            password=form.cleaned_data["password"],
+            backend="django.contrib.auth.backends.ModelBackend",
+        )
         if user is not None:
             login(self.request,user)
         return super(Registration,self).form_valid(form)
