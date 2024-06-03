@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import dj_database_url
+
 
 load_dotenv()
 
@@ -109,6 +111,8 @@ DATABASES = {
     }
 }
 
+#postgres://portfolio_db_chcj_user:D7ZA1d1FETpwqjK57DevdVT42tsk7Gb1@dpg-cpcsnqu74orc73f53mvg-a.oregon-postgres.render.com/task_trackerdb
+DATABASES["default"]=dj_database_url.parse("postgres://portfolio_db_chcj_user:D7ZA1d1FETpwqjK57DevdVT42tsk7Gb1@dpg-cpcsnqu74orc73f53mvg-a.oregon-postgres.render.com/task_trackerdb")
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
