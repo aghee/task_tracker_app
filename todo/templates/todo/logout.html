@@ -1,0 +1,11 @@
+{% extends "todo/base.html" %}
+{% block content %}
+
+<h1>Logout</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Logout">
+    <a href="{% url 'login' %}">Cancel</a>
+    </form>
+
+    {% endblock %}

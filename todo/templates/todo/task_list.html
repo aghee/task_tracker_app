@@ -1,0 +1,50 @@
+{% extends "todo/base.html" %}
+
+{% block content %}
+
+<div class="header-bar">
+    <div>
+        <h1>Good day {{ request.user|title }}</h1>
+        <h3 style="margin: 0"><b> Summary </b> <br> <i>{{ count }}<i> task{{ count|pluralize:"s"}} completed, <br>
+                    <i>{{count_one}}</i> in-progress, <br> <i>{{ count_two}}</i> discontinued</h3>
+    </div>
+<br>
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+    <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+
+</div>
+
+<hr>
+<h1>Activities ToDo: {{ tracker|title }}</h1>
+<a href="{% url 'createtask' %}">Add task</a>
+<form method="GET" action="">
+
+    <input type="text" name="search-area" value="{{ search_input }}">
+    <input type="submit" value="Search">
+
+</form>
+<table>
+    <tr>
+        <th>Activity</th>
+        <th></th>
+        <th>Action</th>
+        <th></th>
+        <th>Status<th>
+    </tr>
+    {% for task in tasks %}
+    <tr>
+        <td><span class="task-status {% if task.status == 'Completed' %} completed
+        {% elif task.status == 'In-progress' %}in-progress{% elif task.status == 'Discontinued' %}discontinued{% endif %}">{{ task.title }}</span></td>
+        <td><a href="{% url 'detailtask' task.id %}">View</a></td>
+        <td><a href="{% url 'updatetask' task.id %}">Edit</a></td>
+        <td><a href="{% url 'deletetask' task.id %}">Delete</a></td>
+        <td><span class="task-status">{{ task.status }}</span></td>
+    </tr>
+    {% empty %}
+    <h3>Hello {{ request.user|title }}, you have no tasks!</h3>
+    {% endfor %}
+</table>
+{% endblock %}

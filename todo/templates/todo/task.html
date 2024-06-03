@@ -1,0 +1,52 @@
+{% extends "todo/base.html" %}
+{% block content %}
+
+<a href="{%url 'all_tasks' %}">Go back</a>
+
+<div class="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Task Name</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Created_at</th>
+                        <th>Updated_at</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <dt>
+                            <dd>{{ task.title }}</dd>
+                            </dt>
+                        </td>
+                        <td>
+                            <dt>
+                            <dd>{{ task.description }}</dd>
+                            </dt>
+                        </td>
+                        <td>
+                            <dt>
+                            <dd>{{ task.status }}</dd>
+                            </dt>
+                        </td>
+                        <td>
+                            <dt>
+                            <dd>{{ task.created }}</dd>
+                            </dt>
+                        </td>
+                        <td>
+                            <dt>
+                            <dd>{{ task.updated }}</dd>
+                            </dt>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}
