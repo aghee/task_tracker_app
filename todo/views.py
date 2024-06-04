@@ -10,7 +10,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.forms import UserCreationForm
+from .forms import RegisterUserForm
 from django.contrib.auth import login
 
 # from django.contrib.auth import get_user_model
@@ -45,7 +45,7 @@ def logoutUser(request):
 
 class Registration(FormView):
     template_name="todo/register.html"
-    form_class=UserCreationForm
+    form_class=RegisterUserForm
     # redirect_authenticated_user=True
     success_url=reverse_lazy("all_tasks")
     
