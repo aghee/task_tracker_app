@@ -5,37 +5,38 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView,UpdateView,DeleteView,FormView
 from .models import Task
 from django.urls import reverse_lazy
-# from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView
 # from django.contrib.auth.views import LogoutView
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login
+
 # from django.contrib.auth import get_user_model
 
 # Create your views here.
-# class CustomLoginView(LoginView):
-#     template_name="todo/login.html"
-#     fields="__all__"
-#     redirect_authenticated_user=True
+class CustomLoginView(LoginView):
+    template_name="todo/login.html"
+    fields="__all__"
+    redirect_authenticated_user=True
     
-#     def get_success_url(self):
-#         return reverse_lazy("all_tasks")
+    def get_success_url(self):
+        return reverse_lazy("all_tasks")
     
 # class CustomLogoutView(LogoutView):
 #     def get_success_url(self):
 #         return reverse_lazy("login")
 
-def loginUser(request):
-    username = request.POST["username"]
-    password = request.POST["password"]
-    user = authenticate(request, username=username, password=password,backend="django.contrib.auth.backends.ModelBackend")
-    if user is not None:
-        login(request, user)
-        return redirect("all_tasks")
-    else:
-        print("Incorrect credentials!Try again.")
+# def loginUser(request):
+#     username = request.POST["username"]
+#     password = request.POST["password"]
+#     user = authenticate(request, username=username, password=password,backend="django.contrib.auth.backends.ModelBackend")
+#     if user is not None:
+#         login(request, user)
+#         return redirect("all_tasks")
+#     else:
+#         print("Incorrect credentials!Try again.")
 
 def logoutUser(request):
     logout(request)
