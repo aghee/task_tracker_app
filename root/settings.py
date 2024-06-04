@@ -178,7 +178,6 @@ EMAIL_HOST_PASSWORD=os.environ.get("EMAIL_PASSWORD")
 #google sigin
 AUTHENTICATION_BACKENDS=(
     "django.contrib.auth.backends.ModelBackend",
-    "allauth.account.auth_backends.AuthenticationBackend"
 )
 
 LOGIN_REDIRECT_URL="/"
